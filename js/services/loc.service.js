@@ -32,6 +32,7 @@ function _createLoc(name, lat, lng, zoom) {
         lat,
         lng,
         zoom,
+        createdAt: Date.now()
     }
 }
 
