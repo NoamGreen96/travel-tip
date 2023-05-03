@@ -1,6 +1,6 @@
 import { locService } from './services/loc.service.js'
 import { mapService } from './services/map.service.js'
-import { storageService } from './services/async-storage.service.js'
+// import { storageService } from './services/async-storage.service.js'
 
 
 window.onload = onInit
@@ -65,5 +65,5 @@ function onAddLoc(ev) {
     if (!name) return
     const lat = ev.latLng.lat
     const lng = ev.latLng.lng()
-    addLoc(name, lat, lng, gMap.getZoom())
+    locService.addLoc(name, lat, lng)
 }

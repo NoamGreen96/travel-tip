@@ -2,6 +2,9 @@ export const locService = {
     getLocs,
     addLoc
 }
+
+import { storageService } from './async-storage.service.js'
+
 const STORAGE_KEY = 'locationsDB'
 
 const locs = [
@@ -17,10 +20,10 @@ function getLocs() {
     })
 }
 
-function addLoc(name, lat, lng, zoom) {
+function addLoc(name, lat, lng, zoom = 15) {
     const newLoc = _createLoc(name, lat, lng, zoom)
     locs.push(newLoc)
-    post(STORAGE_KEY, newLoc)
+    storageService.post(STORAGE_KEY, newLoc)
 }
 
 function _createLoc(name, lat, lng, zoom) {
@@ -31,3 +34,5 @@ function _createLoc(name, lat, lng, zoom) {
         zoom,
     }
 }
+
+
