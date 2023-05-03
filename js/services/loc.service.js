@@ -1,6 +1,6 @@
 export const locService = {
     getLocs,
-    addPlace
+    addLoc
 }
 const STORAGE_KEY = 'locationsDB'
 
@@ -17,7 +17,7 @@ function getLocs() {
     })
 }
 
-function addPlace(name, lat, lng, zoom) {
+function addLoc(name, lat, lng, zoom) {
     const newLoc = _createLoc(name, lat, lng, zoom)
     locs.push(newLoc)
     post(STORAGE_KEY, newLoc)

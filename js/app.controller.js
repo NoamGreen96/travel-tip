@@ -8,16 +8,16 @@ window.onAddMarker = onAddMarker
 window.onPanTo = onPanTo
 window.onGetLocs = onGetLocs
 window.onGetUserPos = onGetUserPos
-window.initMap = initMap;
+
 
 
 function onInit() {
     mapService.initMap()
-        .then(() => {
+        .then((gMap) => {
             console.log('Map is ready')
+            gMap.addListener('click', onAddLoc)
         })
         .catch(() => console.log('Error: cannot init map'))
-    gMap.addListener('click', onAddPlace)
 
 }
 
@@ -59,10 +59,11 @@ function onPanTo() {
     mapService.panTo(35.6895, 139.6917)
 }
 
-function onAddPlace(ev) {
+function onAddLoc(ev) {
+    console.log('hello')
     const name = prompt('Place name?', 'Place 1')
     if (!name) return
     const lat = ev.latLng.lat
     const lng = ev.latLng.lng()
-    addPlace(name, lat, lng, gMap.getZoom())
+    addLoc(name, lat, lng, gMap.getZoom())
 }
