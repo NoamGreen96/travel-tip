@@ -13,6 +13,8 @@ function onInit() {
             console.log('Map is ready')
         })
         .catch(() => console.log('Error: cannot init map'))
+    gMap.addListener('click', onAddPlace)
+
 }
 
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
@@ -50,4 +52,12 @@ function onGetUserPos() {
 function onPanTo() {
     console.log('Panning the Map')
     mapService.panTo(35.6895, 139.6917)
+}
+
+function onAddPlace(ev) {
+    const name = prompt('Place name?', 'Place 1')
+    if (!name) return
+    const lat = ev.latLng.lat
+    const lng = ev.latLng.lng()
+    addPlace(name, lat, lng, gMap.getZoom())
 }
